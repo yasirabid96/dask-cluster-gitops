@@ -1,0 +1,18 @@
+worker:
+  image:
+    name: yasirabid96/dask-worker-rclone
+
+  extraVolumes:
+    - name: rclone-config
+      secret:
+        secretName: rclone-config
+
+  extraVolumeMounts:
+    - name: rclone-config
+      mountPath: /root/.config/rclone
+      readOnly: true
+
+  replicas: 2
+
+scheduler:
+  serviceType: NodePort

@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: dask
+  namespace: argocd
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/yasirabid96/dask-cluster-gitops
+    targetRevision: HEAD
+    path: dask
+
+    helm:
+      releaseName: dask
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: dask
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
