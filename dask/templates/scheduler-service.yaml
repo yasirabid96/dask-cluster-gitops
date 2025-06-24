@@ -6,7 +6,7 @@ metadata:
     app: dask
     component: scheduler
 spec:
-  type: { { .Values.scheduler.serviceType } }
+  type: "{{ .Values.scheduler.serviceType }}"
   selector:
     app: dask
     component: scheduler
