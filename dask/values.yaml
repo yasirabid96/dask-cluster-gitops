@@ -1,6 +1,8 @@
 worker:
   image:
     name: yasirabid96/dask-worker-rclone
+    tag: latest
+    pullPolicy: Always
 
   extraVolumes:
     - name: rclone-config
