@@ -13,6 +13,15 @@ spec:
 
     helm:
       releaseName: dask
+      parameters:
+        - name: scheduler.image.repository
+          value: ghcr.io/yasirabid96/dask-custom
+        - name: scheduler.image.tag
+          value: main
+        - name: worker.image.repository
+          value: ghcr.io/yasirabid96/dask-custom
+        - name: worker.image.tag
+          value: main
 
   destination:
     server: https://kubernetes.default.svc
