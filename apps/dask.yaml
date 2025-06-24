@@ -8,7 +8,7 @@ spec:
 
   source:
     repoURL: https://github.com/yasirabid96/dask-cluster-gitops
-    targetRevision: HEAD
+    targetRevision: main
     path: dask
 
     helm:
@@ -22,3 +22,5 @@ spec:
     automated:
       prune: true
       selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
