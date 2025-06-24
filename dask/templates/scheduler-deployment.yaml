@@ -19,9 +19,9 @@ spec:
     spec:
       containers:
         - name: scheduler
-          image: "{{ .Values.scheduler.image.repository }}:{{ .Values.scheduler.image.tag }}"
-          imagePullPolicy:
-            { { .Values.scheduler.image.pullPolicy | default "IfNotPresent" } }
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: { { .Values.image.pullPolicy } }
+          command: ["dask-scheduler"]
           ports:
-            - containerPort: 8786 # Dask scheduler port
-            - containerPort: 8787 #
+            - containerPort: 8786
+            - containerPort: 8787
