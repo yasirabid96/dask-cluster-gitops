@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dask-scheduler
+  labels:
+    app: dask
+    component: scheduler
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dask
+      component: scheduler
+  template:
+    metadata:
+      labels:
+        app: dask
+        component: scheduler
+    spec:
+      containers:
+        - name: scheduler
+          image: "{{ .Values.scheduler.image.repository }}:{{ .Values.scheduler.image.tag }}"
+          imagePullPolicy:
+            { { .Values.scheduler.image.pullPolicy | default "IfNotPresent" } }
+          ports:
+            - containerPort: 8786 # Dask scheduler port
+            - containerPort: 8787 # Dashboard

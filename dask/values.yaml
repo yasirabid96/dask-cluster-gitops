@@ -1,20 +1,21 @@
+scheduler:
+  image:
+    repository: ghcr.io/yasirabid96/dask-custom
+    tag: main
+    pullPolicy: Always
+  serviceType: NodePort
+
 worker:
   image:
     name: yasirabid96/dask-worker-rclone
     tag: latest
     pullPolicy: Always
-
+  replicas: 2
   extraVolumes:
     - name: rclone-config
       secret:
         secretName: rclone-config
-
   extraVolumeMounts:
     - name: rclone-config
       mountPath: /root/.config/rclone
       readOnly: true
-
-  replicas: 2
-
-scheduler:
-  serviceType: NodePort

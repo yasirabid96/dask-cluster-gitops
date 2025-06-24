@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: dask-scheduler
+  labels:
+    app: dask
+    component: scheduler
+spec:
+  type: { { .Values.scheduler.serviceType } }
+  selector:
+    app: dask
+    component: scheduler
+  ports:
+    - name: dask-scheduler
+      port: 8786
+      targetPort: 8786
+    - name: dashboard
+      port: 8787
+      targetPort: 8787
