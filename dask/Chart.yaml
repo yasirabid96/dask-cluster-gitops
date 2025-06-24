@@ -1,0 +1,7 @@
+apiVersion: v2
+name: dask
+description: A Helm chart for deploying Dask on Kubernetes
+
+type: application
+version: 1.0.0
+appVersion: "2025.7.1"
