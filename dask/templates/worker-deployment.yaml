@@ -6,7 +6,7 @@ metadata:
     app: dask
     component: worker
 spec:
-  replicas: {{ .Values.worker.replicas }}
+  replicas: { { .Values.worker.replicas } }
   selector:
     matchLabels:
       app: dask
@@ -20,17 +20,9 @@ spec:
       containers:
         - name: worker
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          imagePullPolicy: "{{ .Values.image.pullPolicy }}"
           command: ["dask-worker", "dask-scheduler:8786"]
-          volumeMounts:
-            {{- range .Values.worker.extraVolumeMounts }}
-            - name: {{ .name }}
-              mountPath: {{ .mountPath }}
-              readOnly: {{ .readOnly | default false }}
-            {{- end }}
-      volumes:
-        {{- range .Values.worker.extraVolumes }}
-        - name: {{ .name }}
-          secret:
-            secretName: {{ .secret.secretName }}
-        {{- end }}
+          env:
+            - name: RCLONE_CONFIG_PATH
+              value: "{{ .Values.worker.configPath }}"
+          args: []

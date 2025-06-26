@@ -8,11 +8,4 @@ scheduler:
 
 worker:
   replicas: 2
-  extraVolumes:
-    - name: rclone-config
-      secret:
-        secretName: rclone-config
-  extraVolumeMounts:
-    - name: rclone-config
-      mountPath: /root/.config/rclone
-      readOnly: true
+  configPath: "/tmp/rclone-user/rclone.conf"

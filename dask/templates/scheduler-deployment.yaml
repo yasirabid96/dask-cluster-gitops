@@ -20,7 +20,7 @@ spec:
       containers:
         - name: scheduler
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-          iimagePullPolicy: "{{ .Values.image.pullPolicy }}"
+          imagePullPolicy: "{{ .Values.image.pullPolicy }}"
           command: ["dask-scheduler"]
           ports:
             - containerPort: 8786
