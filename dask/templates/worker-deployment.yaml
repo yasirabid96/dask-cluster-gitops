@@ -6,7 +6,7 @@ metadata:
     app: dask
     component: worker
 spec:
-  replicas: { { .Values.worker.replicas } }
+  replicas: { { .Values.worker.replicas | default 2 } }
   selector:
     matchLabels:
       app: dask
