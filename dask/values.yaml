@@ -7,5 +7,9 @@ scheduler:
   serviceType: NodePort
 
 worker:
-  replicas: 2
-  configPath: "/tmp/rclone-user/rclone.conf"
+  hpa:
+    enabled: true
+    minReplicas: 2
+    maxReplicas: 50
+    cpu:
+      targetAverageUtilization: 70
