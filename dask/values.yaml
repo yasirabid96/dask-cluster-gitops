@@ -14,6 +14,7 @@ worker:
     cpu:
       targetAverageUtilization: 70
 
+  # Correctly define resources for the container
   resources:
     requests:
       cpu: 200m
