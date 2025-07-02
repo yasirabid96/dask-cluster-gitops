@@ -2,7 +2,7 @@ apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
   name: dask-worker
-  namespace: { { .Release.Namespace } }
+  namespace: "{{ .Release.Namespace }}"
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
