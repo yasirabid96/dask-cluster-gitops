@@ -23,9 +23,6 @@ spec:
           imagePullPolicy: "{{ .Values.image.pullPolicy }}"
           command: ["dask-worker", "dask-scheduler:8786"]
           args: []
-          env:
-            - name: RCLONE_CONFIG_PATH
-              value: "{{ .Values.worker.configPath }}"
           resources:
             requests:
               cpu: 200m

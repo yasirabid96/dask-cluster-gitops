@@ -8,5 +8,10 @@ RUN apt-get update && \
     chmod +x /usr/bin/rclone && \
     rm -rf rclone*
 
+
+COPY ./rclone.conf /etc/rclone/rclone.conf
+
+ENV RCLONE_CONFIG=/etc/rclone/rclone.conf
+
 RUN mkdir -p /data/output
 WORKDIR /data
