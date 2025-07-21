@@ -8,11 +8,10 @@ spec:
   accessModes:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
-  storageClassName: dask-nfs
+  storageClassName: ""
   nfs:
     path: "{{ .Values.nfs.path }}"
     server: "{{ .Values.nfs.server }}"
-
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -21,7 +20,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteMany
-  storageClassName: dask-nfs
+  storageClassName: ""
   resources:
     requests:
       storage: "{{ .Values.nfs.request }}"
