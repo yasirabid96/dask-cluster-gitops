@@ -16,14 +16,7 @@ spec:
           env:
             - name: RCLONE_CONFIG
               value: /root/.config/rclone/rclone.conf
-          volumeMounts:
-            - name: rclone-config
-              mountPath: /root/.config/rclone/
-              readOnly: true
       volumes:
-        - name: rclone-config
-          configMap:
-            name: rclone-config
         - name: nfs-mount
           persistentVolumeClaim:
             claimName: nfs-pvc
