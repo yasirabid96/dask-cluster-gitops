@@ -1,13 +1,12 @@
 FROM daskdev/dask:latest
 
 RUN apt-get update && \
-    apt-get install -y curl unzip fuse && \
+    apt-get install -y curl unzip fuse nfs-common && \
     curl -O https://downloads.rclone.org/rclone-current-linux-amd64.zip && \
     unzip rclone-current-linux-amd64.zip && \
     cp rclone-*-linux-amd64/rclone /usr/bin/rclone && \
     chmod +x /usr/bin/rclone && \
     rm -rf rclone*
-
 
 COPY ./rclone.conf /etc/rclone/rclone.conf
 
