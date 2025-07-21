@@ -31,7 +31,7 @@ spec:
               cpu: 500m
               memory: 512Mi
           volumeMounts:
-            - mountPath: { { .Values.nfs.mountPath } }
+            - mountPath: "{{ .Values.nfs.mountPath }}"
               name: dask-nfs-volume
       volumes:
         - name: dask-nfs-volume
