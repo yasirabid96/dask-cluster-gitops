@@ -18,6 +18,8 @@ spec:
         app: dask
         component: worker
     spec:
+      hostNetwork: true # ✅ Make pod use node's network stack
+      dnsPolicy: ClusterFirstWithHostNet # ✅ Required when using hostNetwork
       containers:
         - name: worker
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
