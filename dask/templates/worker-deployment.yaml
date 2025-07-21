@@ -30,3 +30,10 @@ spec:
             limits:
               cpu: 500m
               memory: 512Mi
+          volumeMounts:
+            - mountPath: { { .Values.nfs.mountPath } }
+              name: dask-nfs-volume
+      volumes:
+        - name: dask-nfs-volume
+          persistentVolumeClaim:
+            claimName: dask-nfs-pvc

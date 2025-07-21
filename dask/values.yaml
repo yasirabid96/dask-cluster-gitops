@@ -21,3 +21,10 @@ worker:
     limits:
       cpu: 500m
       memory: 512Mi
+
+nfs:
+  server: 10.255.135.231
+  path: /srv/nfs
+  size: 500Gi
+  request: 1Gi
+  mountPath: /srv/nfs
