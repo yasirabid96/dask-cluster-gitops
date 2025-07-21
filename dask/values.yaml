@@ -32,7 +32,7 @@ worker:
         claimName: dask-nfs-pvc
 
 nfs:
-  server: 10.255.135.231
+  server: 10.0.0.161 # ✅ use this!
   path: /srv/nfs
   mountPath: /mnt/nfs
   size: 500Gi

@@ -4,8 +4,8 @@ metadata:
   name: nfs-csi
 provisioner: nfs.csi.k8s.io
 parameters:
-  server: 10.255.135.231 # 👈 your NFS server IP
-  share: /srv/nfs # 👈 exported path from your NFS server
+  server: 10.0.0.161 # ✅ the correct one now
+  share: /srv/nfs
 reclaimPolicy: Delete
 volumeBindingMode: Immediate
 mountOptions:
