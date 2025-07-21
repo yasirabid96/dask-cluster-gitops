@@ -1,38 +1,28 @@
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
-  name: install-nfs-common
+  name: install-nfs-utils
   namespace: kube-system
 spec:
   selector:
     matchLabels:
-      name: install-nfs-common
+      name: install-nfs-utils
   template:
     metadata:
       labels:
-        name: install-nfs-common
+        name: install-nfs-utils
     spec:
       hostPID: true
       containers:
-        - name: install-nfs-common
-          image: ubuntu:20.04 # Use a specific version
+        - name: install
+          image: fedora:latest
           command:
             - /bin/bash
             - -c
             - |
-              apt-get update && \
-              DEBIAN_FRONTEND=noninteractive apt-get install -y nfs-common && \
-              echo "Installed nfs-common on $(hostname)" && \
-              sleep infinity
+              dnf install -y nfs-utils && sleep infinity
           securityContext:
             privileged: true
-          volumeMounts:
-            - name: root-mount
-              mountPath: /host
-      volumes:
-        - name: root-mount
-          hostPath:
-            path: /
-      restartPolicy: Always
       tolerations:
-        - operator: Exists
+        - operator: "Exists"
+      restartPolicy: Always
