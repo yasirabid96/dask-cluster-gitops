@@ -1,14 +1,10 @@
-# nfs-storageclass.yaml
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
-  name: nfs-csi
+  name: nfs-static
 provisioner: nfs.csi.k8s.io
 parameters:
-  server: 10.0.0.161 # ✅ Updated to match your K8s subnet
+  server: 10.0.0.161
   share: /srv/nfs
-reclaimPolicy: Delete
+reclaimPolicy: Retain
 volumeBindingMode: Immediate
-mountOptions:
-  - hard
-  - nfsvers=4.1
