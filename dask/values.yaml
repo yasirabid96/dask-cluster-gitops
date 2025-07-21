@@ -16,15 +16,15 @@ worker:
 
   resources:
     requests:
-      cpu: 200m
-      memory: 256Mi
+      cpu: "200m"
+      memory: "256Mi"
     limits:
-      cpu: 500m
-      memory: 512Mi
+      cpu: "500m"
+      memory: "512Mi"
 
 nfs:
   server: 10.255.135.231
   path: /srv/nfs
+  mountPath: /mnt/nfs # This should match what's used in volumeMounts
   size: 500Gi
   request: 1Gi
-  mountPath: /srv/nfs

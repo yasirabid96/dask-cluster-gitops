@@ -4,14 +4,16 @@ metadata:
   name: dask-nfs-pv
 spec:
   capacity:
-    storage: "{{ .Values.nfs.size }}"
+    storage: 500Gi
   accessModes:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
   storageClassName: dask-nfs
+  mountOptions:
+    - vers=4
   nfs:
-    path: "{{ .Values.nfs.path }}"
-    server: "{{ .Values.nfs.server }}"
+    path: /srv/nfs
+    server: 10.255.135.231
 
 ---
 apiVersion: v1
@@ -24,4 +26,4 @@ spec:
   storageClassName: dask-nfs
   resources:
     requests:
-      storage: "{{ .Values.nfs.request }}"
+      storage: 1Gi
