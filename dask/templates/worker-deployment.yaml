@@ -32,7 +32,7 @@ spec:
               memory: "{{ .Values.worker.resources.limits.memory }}"
           volumeMounts:
             - name: dask-nfs-volume
-              mountPath: "{{ .Values.nfs.mountPath }}"
+              mountPath: /mnt/nfs
       volumes:
         - name: dask-nfs-volume
           persistentVolumeClaim:
