@@ -1,5 +1,6 @@
 FROM daskdev/dask:latest
 
+# Install dependencies and rclone
 RUN apt-get update && \
     apt-get install -y curl unzip fuse nfs-common && \
     curl -O https://downloads.rclone.org/rclone-current-linux-amd64.zip && \
@@ -8,9 +9,17 @@ RUN apt-get update && \
     chmod +x /usr/bin/rclone && \
     rm -rf rclone*
 
-COPY ./rclone.conf /etc/rclone/rclone.conf
+# Create rclone config directory and copy config with proper permissions
+RUN mkdir -p /root/.config/rclone && \
+    chmod 700 /root/.config/rclone
 
-ENV RCLONE_CONFIG=/etc/rclone/rclone.conf
+COPY ./rclone.conf /root/.config/rclone/rclone.conf
 
-RUN mkdir -p /data/output
-WORKDIR /data
+# Set rclone config path
+ENV RCLONE_CONFIG=/root/.config/rclone/rclone.conf
+
+# (Optional) Create NFS mount point with permissions
+RUN mkdir -p /mnt/nfs && chmod 777 /mnt/nfs
+
+# Set default working directory if needed
+WORKDIR /app

@@ -1,22 +1,22 @@
-apiVersion: batch/v1
-kind: Job
-metadata:
-  name: wildobs-transfer
-  namespace: dask
-spec:
-  template:
-    spec:
-      restartPolicy: Never
-      containers:
-        - name: app
-          image: docker.io/yasirabid96/wildobs-transfer:latest
-          volumeMounts:
-            - name: nfs-mount
-              mountPath: /mnt/nfs
-          env:
-            - name: RCLONE_CONFIG
-              value: /root/.config/rclone/rclone.conf
-      volumes:
-        - name: nfs-mount
-          persistentVolumeClaim:
-            claimName: nfs-pvc
+# apiVersion: batch/v1
+# kind: Job
+# metadata:
+#   name: wildobs-transfer
+#   namespace: dask
+# spec:
+#   template:
+#     spec:
+#       restartPolicy: Never
+#       containers:
+#         - name: app
+#           image: docker.io/yasirabid96/wildobs-transfer:latest
+#           volumeMounts:
+#             - name: nfs-mount
+#               mountPath: /mnt/nfs
+#           env:
+#             - name: RCLONE_CONFIG
+#               value: /root/.config/rclone/rclone.conf
+#       volumes:
+#         - name: nfs-mount
+#           persistentVolumeClaim:
+#             claimName: nfs-pvc
