@@ -1,21 +1,22 @@
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
-  name: install-nfs-utils
+  name: nfs-installer
   namespace: kube-system
 spec:
   selector:
     matchLabels:
-      name: install-nfs-utils
+      app: nfs-installer
   template:
     metadata:
       labels:
-        name: install-nfs-utils
+        app: nfs-installer
     spec:
       hostPID: true
+      hostNetwork: true
       containers:
-        - name: install
-          image: fedora:latest
+        - name: install-nfs
+          image: fedora
           command:
             - /bin/bash
             - -c
@@ -24,5 +25,5 @@ spec:
           securityContext:
             privileged: true
       tolerations:
-        - operator: "Exists"
+        - operator: Exists
       restartPolicy: Always
