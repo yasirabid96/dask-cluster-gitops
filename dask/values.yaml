@@ -22,9 +22,19 @@ worker:
       cpu: "500m"
       memory: "512Mi"
 
+  volumeMounts:
+    - name: dask-nfs-volume
+      mountPath: /mnt/nfs
+
+  volumes:
+    - name: dask-nfs-volume
+      persistentVolumeClaim:
+        claimName: dask-nfs-pvc
+
 nfs:
   server: 10.255.135.231
   path: /srv/nfs
-  mountPath: /mnt/nfs # This should match what's used in volumeMounts
+  mountPath: /mnt/nfs
   size: 500Gi
   request: 1Gi
+  storageClass: nfs-csi

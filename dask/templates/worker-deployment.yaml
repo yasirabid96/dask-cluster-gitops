@@ -6,7 +6,7 @@ metadata:
     app: dask
     component: worker
 spec:
-  replicas: 2
+  replicas: { { .Values.worker.hpa.minReplicas } }
   selector:
     matchLabels:
       app: dask
@@ -25,14 +25,14 @@ spec:
           args: []
           resources:
             requests:
-              cpu: 200m
-              memory: 256Mi
+              cpu: "{{ .Values.worker.resources.requests.cpu }}"
+              memory: "{{ .Values.worker.resources.requests.memory }}"
             limits:
-              cpu: 500m
-              memory: 512Mi
+              cpu: "{{ .Values.worker.resources.limits.cpu }}"
+              memory: "{{ .Values.worker.resources.limits.memory }}"
           volumeMounts:
-            - mountPath: /mnt/nfs
-              name: dask-nfs-volume
+            - name: dask-nfs-volume
+              mountPath: "{{ .Values.nfs.mountPath }}"
       volumes:
         - name: dask-nfs-volume
           persistentVolumeClaim:
