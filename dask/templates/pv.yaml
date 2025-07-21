@@ -4,14 +4,15 @@ metadata:
   name: dask-nfs-pv
 spec:
   capacity:
-    storage: { { .Values.nfs.size } }
+    storage: "{{ .Values.nfs.size }}"
   accessModes:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
   storageClassName: dask-nfs
   nfs:
-    path: { { .Values.nfs.path } }
-    server: { { .Values.nfs.server } }
+    path: "{{ .Values.nfs.path }}"
+    server: "{{ .Values.nfs.server }}"
+
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -23,4 +24,4 @@ spec:
   storageClassName: dask-nfs
   resources:
     requests:
-      storage: { { .Values.nfs.request } }
+      storage: "{{ .Values.nfs.request }}"
