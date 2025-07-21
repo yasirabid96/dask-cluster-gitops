@@ -29,12 +29,12 @@ worker:
   volumes:
     - name: dask-nfs-volume
       persistentVolumeClaim:
-        claimName: dask-nfs-pvc
+        claimName: nfs-pvc # 👈 manually created PVC bound to static PV
 
 nfs:
-  server: 10.0.0.161 # ✅ use this!
+  server: 10.0.0.161
   path: /srv/nfs
   mountPath: /mnt/nfs
-  size: 500Gi
-  request: 1Gi
-  storageClass: nfs-csi
+  size: 10Gi # 👈 must match manually defined PV
+  request: 10Gi # 👈 must match PVC request
+  storageClass: nfs-static

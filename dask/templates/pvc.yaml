@@ -7,6 +7,7 @@ spec:
     storage: 10Gi
   accessModes:
     - ReadWriteMany
+  storageClassName: nfs-static
   nfs:
     server: 10.0.0.161
     path: /srv/nfs
@@ -19,6 +20,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteMany
+  storageClassName: nfs-static
   resources:
     requests:
       storage: 10Gi
