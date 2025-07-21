@@ -3,6 +3,14 @@ image:
   tag: latest
   pullPolicy: Always
 
+nfs:
+  server: 10.0.0.161
+  path: /srv/nfs
+  mountPath: /mnt/nfs
+  size: 10Gi
+  request: 10Gi
+  storageClass: nfs-static
+
 scheduler:
   serviceType: NodePort
 
@@ -29,12 +37,4 @@ worker:
   volumes:
     - name: dask-nfs-volume
       persistentVolumeClaim:
-        claimName: nfs-pvc # ✅ This must match exactly your bound PVC
-
-nfs:
-  server: 10.0.0.161 # ✅ NFS server IP
-  path: /srv/nfs # ✅ Path shared by your NFS server
-  mountPath: /mnt/nfs
-  size: 10Gi # ✅ Should match `capacity` in the PV
-  request: 10Gi # ✅ Should match PVC's requested storage
-  storageClass: nfs-static # ✅ Matches the PV's StorageClass
+        claimName: nfs-pvc
