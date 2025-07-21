@@ -4,7 +4,7 @@ image:
   pullPolicy: Always
 
 nfs:
-  server: 203.101.229.227
+  server: 10.0.0.161
   path: /srv/nfs
   mountPath: /mnt/nfs
   size: 10Gi
