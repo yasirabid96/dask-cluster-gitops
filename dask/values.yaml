@@ -29,7 +29,7 @@ worker:
   volumes:
     - name: dask-nfs-volume
       persistentVolumeClaim:
-        claimName: nfs-pvc # 👈 manually created PVC bound to static PV
+        claimName: nfs-pvc
 
 nfs:
   server: 10.0.0.161

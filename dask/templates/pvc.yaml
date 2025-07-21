@@ -7,20 +7,22 @@ spec:
     storage: 10Gi
   accessModes:
     - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
   storageClassName: nfs-static
   nfs:
     server: 10.0.0.161
     path: /srv/nfs
-  persistentVolumeReclaimPolicy: Retain
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: nfs-pvc
+  namespace: dask
 spec:
   accessModes:
     - ReadWriteMany
-  storageClassName: nfs-static
   resources:
     requests:
       storage: 10Gi
+  storageClassName: nfs-static
+  volumeName: nfs-pv
