@@ -9,7 +9,7 @@ spec:
     kind: Deployment
     name: dask-worker
   minReplicas: 3
-  maxReplicas: 10
+  maxReplicas: 50
   metrics:
     - type: Resource
       resource:
