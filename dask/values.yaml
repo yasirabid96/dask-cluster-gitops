@@ -18,10 +18,10 @@ worker:
   resources:
     requests:
       cpu: "250m"
-      memory: "1Gi"
+      memory: "100Mi"
     limits:
-      cpu: "500m"
-      memory: "1.5Gi"
+      cpu: "300m"
+      memory: "200Mi"
 
   volumeMounts:
     - name: dask-nfs-volume
